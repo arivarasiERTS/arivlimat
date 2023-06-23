@@ -5,8 +5,8 @@ export default function ThirdScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Third</Text>
-      <Button title="Pop to root" onPress={() => navigation.popToTop()} />
-      <Button title="Pop" onPress={() => navigation.pop()} />
+      <Button title="Go Home" onPress={() => navigation.popToTop()} />
+      <Button title="Home" onPress={() => navigation.pop()} />
       <StatusBar style="auto" />
     </View>
   );
