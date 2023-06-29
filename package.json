@@ -23,7 +23,8 @@
     "expo-file-system": "~15.2.2",
     "expo-document-picker": "~11.2.2",
     "expo-sharing": "~11.2.2",
-    "expo-web-browser": "~12.1.1"
+    "expo-web-browser": "~12.1.1",
+    "react-native-webview": "11.26.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
