@@ -1,49 +1,34 @@
-import * as React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
-import { Video, ResizeMode } from 'expo-av';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import PagerView from 'react-native-pager-view';
 
-export default function App() {
-  const video = React.useRef(null);
-  const [status, setStatus] = React.useState({});
+const MyPager = () => {
   return (
-    <View style={styles.container}>
-      <Video
-        ref={video}
-        style={styles.video}
-        source={{
-          uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-        }}
-        useNativeControls
-        resizeMode={ResizeMode.CONTAIN}
-        isLooping
-        onPlaybackStatusUpdate={status => setStatus(() => status)}
-      />
-      <View style={styles.buttons}>
-        <Button
-          title={status.isPlaying ? 'Pause' : 'Play'}
-          onPress={() =>
-            status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-          }
-        />
-      </View>
+    <View style={{ flex: 1 }}>
+      <PagerView style={styles.viewPager} initialPage={0}>
+        <View style={styles.page} key="1">
+          <Text>First page</Text>
+          <Text>Swipe ➡️</Text>
+        </View>
+        <View style={styles.page} key="2">
+          <Text>Second page</Text>
+        </View>
+        <View style={styles.page} key="3">
+          <Text>Third page</Text>
+        </View>
+      </PagerView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  viewPager: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
   },
-  video: {
-    alignSelf: 'center',
-    width: 320,
-    height: 200,
-  },
-  buttons: {
-    flexDirection: 'row',
+  page: {
     justifyContent: 'center',
     alignItems: 'center',
   },
 });
+
+export default MyPager;
