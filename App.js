@@ -1,60 +1,143 @@
-import React, {  useState, useEffect } from 'react';
-import { View, Text,SafeAreaView,StyleSheet, FlatList,Item } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, View, Text, Button } from 'react-native';
+import { BottomSheet } from 'react-native-btr';
+import { SocialIcon } from 'react-native-elements';
 
+const App = () => {
+    const [visible, setVisible] = useState(false);
 
-const RestApiLink = () => {
-    const [Data, setData] = useState([])
-    const API = 'https://jsonplaceholder.typicode.com/posts';
-    const fetchPost = () => {
-    fetch(API)
-        .then((res) => res.json())
-        .then((res) => {
-            setData(res);
-        })
-    }
-    useEffect(() => {
-        fetchPost()
-    }, []);
+    const toggleBottomNavigationView = () => {
+        setVisible(!visible);
+    };
 
-    const renderItem = ({ item: post }) => (
-        <Card style={styles.cardbox}>
-            <Text style={styles.title}>{post.title}</Text>
-            <Paragraph>{post.body}</Paragraph>
-        </Card>
-    );
-
-return(
-    <SafeAreaView style={styles.container}>
-        <FlatList
-            data={Data}
-            renderItem={renderItem}
-            keyExtractor={Data => Data.id}
-        />
-    </SafeAreaView>
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
+                <Button
+                    onPress={toggleBottomNavigationView}
+                    title="Show Bottom Sheet"
+                />
+                <BottomSheet
+                    visible={visible}
+                    onBackButtonPress={toggleBottomNavigationView}
+                    onBackdropPress={toggleBottomNavigationView}
+                >
+                    <View style={styles.bottomNavigationView}>
+                        <View style={styles.bottomNavigationIneerView}>
+                            <Text style={styles.bottomSheetTitle}>
+                                Share Using
+                            </Text>
+                            <View style={styles.iconView}>
+                                <SocialIcon
+                                    type="twitter"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('twitter');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="gitlab"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('gitlab');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="medium"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('medium');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="facebook"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('facebook');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="instagram"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('instagram');
+                                    }}
+                                />
+                            </View>
+                            <View style={styles.iconView}>
+                                <SocialIcon
+                                    type="facebook"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('facebook');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="instagram"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('instagram');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="gitlab"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('gitlab');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="twitter"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('twitter');
+                                    }}
+                                />
+                                <SocialIcon
+                                    type="medium"
+                                    onPress={() => {
+                                        toggleBottomNavigationView();
+                                        alert('medium');
+                                    }}
+                                />
+                            </View>
+                        </View>
+                    </View>
+                </BottomSheet>
+            </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        textAlign: 'center',
+        margin: 2,
         justifyContent: 'center',
-        marginHorizontal: 10,
-        marginVertical: 15,
+        alignItems: 'center',
+        backgroundColor: '#E0F7FA',
     },
-    cardbox:{
-        marginVertical:8,
-        marginHorizontal:5,
-        padding: 10,
+    bottomNavigationView: {
+        backgroundColor: '#fff',
+        width: '100%',
+        height: 250,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    title:{
-        backgroundColor: '#e2e2e2',
-        fontWeight: 'bold', 
-        textAlign:  'center',
-        borderRadius: 10,
-        paddingVertical: 5 ,
+    bottomSheetTitle: {
+        textAlign: 'center',
+        padding: 20,
+        fontSize: 20
+    },
+    bottomNavigationIneerView: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+    },
+    iconView: {
+        flex: 1, 
+        flexDirection: 'row',
     }
 });
 
-export default RestApiLink;
+export default App;
