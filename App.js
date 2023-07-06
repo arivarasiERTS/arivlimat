@@ -1,85 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Animated, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { Image } from 'expo-image';
 
-const App = () => {
-    const [isVisible, setisVisible] = useState(true);
-
-    const width = new Animated.Value(0);
-    const height = new Animated.Value(0);
-    const IMAGE = 'https://tsc-website-production.s3.amazonaws.com/uploads/2018/05/React-Native.png';
-    //const IMAGE1 = 'https://www.nicesnippets.com/image/nice-logo.png';
-       useEffect(() => {
-        Animated.timing(
-            width,
-            {
-                toValue: 360,
-                duration: 1200,
-                useNativeDriver: false,
-            },
-        ).start();
-
-        Animated.timing(
-            height,
-            {
-                toValue: 100,
-                duration: 1200,
-                useNativeDriver: false,
-            },
-        ).start();
-    }, []);
-
-    const Hide_Splash_Screen = () => {
-        setisVisible(false);
-    }
-
-    useEffect(() => {
-        let myTimeout = setTimeout(() => {
-            Hide_Splash_Screen();
-        }, 3000);
-        return () => clearTimeout(myTimeout);
-    }, []);
-
-    const Splash_Screen = () => {
-        return (
-            <View style={styles.container}>
-                <Animated.Image
-                    source={{ uri: IMAGE }}
-                    style={{
-                        width: width,
-                        height: height,
-                        position: 'absolute',
-                    }}
-                    resizeMode='cover'
-                />
-            </View>
-        );
-    }
-
+export default function App() {
     return (
-        <>
-            {
-                (isVisible === true) ? Splash_Screen() : (
-                     <View style={styles.container}>
-                    <Text style={styles.title}>Welcome</Text>
-                    </View>
-                   
-                )
-            }
-        </>
+        <ScrollView>
+            <View style={styles.container}>
+                <Image 
+                    source={{
+                        uri:'https://www.nicesnippets.com/image/nice-logo.png?ezimgfmt=rs:238x47/rscb1/ng:webp/ngcb1',
+                    }}
+                    style={styles.img1}
+                    contentFit='contain'
+                />
+                <Image 
+                    source={require('./assets/cup.jpg')}
+                    style={styles.img2}
+                    contentFit='contain'
+                />
+            </View> 
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#FFF',
-        justifyContent: 'center',
-        alignItems: 'center',
+        flex:1,
+        alignItems:'center',
+        marginTop:150,  
     },
-    title: {
-        fontSize:23,
-        fontWeight:'800',
+    img1: {
+        width:350,
+        height:150,
+    },
+    img2: {
+        width:500,
+        height:200,
+        marginVertical:10,
+        borderRadius:20,
     },
 });
-
-export default App;
