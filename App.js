@@ -5,6 +5,7 @@ import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Platform, StatusBar } from 'react-native';
+import { usePreventScreenCapture } from 'expo-screen-capture';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -16,6 +17,7 @@ Notifications.setNotificationHandler({
 
 
 const App = () => {
+  usePreventScreenCapture();
     const [totalDuration, setTotalDuration] = useState(0);
 
     useEffect(() => {
