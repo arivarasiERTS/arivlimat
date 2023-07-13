@@ -1,35 +1,57 @@
-import React, { Component } from 'react';
-import { Share, View, Button,Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import CountDown from 'react-native-countdown-component';
+import moment from 'moment';
 
-class ShareExample extends Component {
-  onShare = async () => {
-    try {
-      const result = await Share.share({
-        message:
-          'https://www.nicesnippets.com/',
-      });
+const App = () => {
+    const [totalDuration, setTotalDuration] = useState(0);
 
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+    useEffect(() => {
+        let date = moment().utcOffset('+ 05:30').format('YYYY-MM-DD hh:mm:ss');
+        let expirydate = '2023-07-15 06:00:00';
 
-  render() {
+        let diffr = moment.duration(moment(expirydate).diff(moment(date)));
+
+        var hours = parseInt(diffr.asHours());
+        var minutes = parseInt(diffr.minutes());
+        var seconds = parseInt(diffr.seconds());
+
+        var d = hours * 60 * 60 + minutes * 60 + seconds;
+        
+        setTotalDuration(d);
+    }, []);
+
     return (
-      <View style={{ margin: 20 }}>
-        <Text style={{ marginVertical:40,fontSize: 18 }}>React Native Share link Example</Text>
-        <Button onPress={this.onShare} title="Share" />
-      </View>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
+                <Text style={styles.title}>
+                    Timer 
+                </Text>
+                <CountDown
+                    until={totalDuration}
+                    timetoShow={('H', 'M', 'S')}
+                    onFinish={() => alert('finished')}
+                    onPress={() => alert('hello')}
+                    size={20}
+                />
+            </View>
+        </SafeAreaView>
     );
-  }
 }
-export default ShareExample;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        padding: 20,
+    },
+});
+
+export default App;
