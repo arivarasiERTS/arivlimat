@@ -1,18 +1,10 @@
 import React from 'react';
-import { StyleSheet,Button,Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const HomeScreen = (props) => {
-
-    const gotoTestStackScreen = () => {
-        props.navigation.navigate('Test');
-    };
-
+const HomeScreen = () => {
     return (
         <View style={styles.container}>
-            <View>
-                <Text style={styles.text}>HomeScreen!</Text>
-            </View>
-            <Button title="Go to test test screen" onPress={gotoTestStackScreen} />
+            <Text style={styles.text}>HomeScreen!</Text>
         </View>
     );
 }
