@@ -5,6 +5,7 @@ import HomeScreen from './Screens/HomeScreen';
 import ImageScreen from './Screens/ImageScreen';
 import CartScreen from './Screens/CartScreen';
 import TestScreen from './Screens/TestScreen';
+import ImgList from './Screens/ImgList';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,6 +17,7 @@ const App = () => {
                 drawerContent={(props) => <TestScreen {...props} />}
             >
                 <Drawer.Screen name='Home' component={HomeScreen} />
+                <Drawer.Screen name='ImgList' component={ImgList} />
                 <Drawer.Screen name='Image' component={ImageScreen} />
                 <Drawer.Screen name='Cart' component={CartScreen} />
             </Drawer.Navigator>
