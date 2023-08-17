@@ -4,6 +4,9 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+//added imports
+import android.view.WindowManager;
+import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
 
@@ -15,6 +18,14 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "FeatureDev";
   }
+  
+//added function
+  @Override 
+  protected void onCreate(Bundle savedInstanceState) { 
+    super.onCreate(savedInstanceState); 
+    getWindow().setFlags( WindowManager.LayoutParams.FLAG_SECURE, 
+    WindowManager.LayoutParams.FLAG_SECURE
+     ); }
 
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link
