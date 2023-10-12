@@ -30,7 +30,7 @@ export default function DisplayMuseumList() {
 
   return (
       <SafeAreaView style={styles.container}>
-          <Text>Museums List</Text>
+          <Text> Search Museums</Text>
             <FlatList
             data={Museum}
             renderItem={renderItem}

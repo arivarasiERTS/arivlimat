@@ -5,7 +5,7 @@ import {styles} from "../../../Style";
 export default function QRscanner() {
   return (
     <View style={styles.container}>
-        <Text> Scan the code</Text>
+        <Text> Scan the collection code</Text>
      </View>
   );
 }
