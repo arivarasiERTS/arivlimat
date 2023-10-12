@@ -1,24 +1,21 @@
 import React from 'react';
-import {SafeAreaView,ScrollView,StyleSheet,Text,View} from 'react-native';
+import { Text,View,Button } from 'react-native';
+import {styles} from "../../../Style";
+import { useNavigation } from '@react-navigation/native';
 
-function SelectedMuseumAudioScreen(){
-
-return (
-    <SafeAreaView>
-      <ScrollView>
-      <View>
-      <Text>Welcome</Text> 
-      </View>
-      </ScrollView>
-    </SafeAreaView>
+export default function SelectedMuseumAudioScreen() {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+        <Text>Audio</Text>
+        <Button 
+        title="Choose Collection"
+        onPress={() => navigation.navigate("ChooseCollection")}
+      />
+        <Button 
+        title="QRscanner"
+        onPress={() => navigation.navigate("QRscanner")}
+      />
+     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  Container: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-});
-
-export default SelectedMuseumAudioScreen;

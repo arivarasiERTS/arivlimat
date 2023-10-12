@@ -1,24 +1,11 @@
 import React from 'react';
-import {SafeAreaView,ScrollView,StyleSheet,Text,View} from 'react-native';
+import { Text,View,Button } from 'react-native';
+import {styles} from "../../../Style";
 
-function VideoplayScreen(){
-
-return (
-    <SafeAreaView>
-      <ScrollView>
-      <View>
-      <Text>Welcome</Text> 
-      </View>
-      </ScrollView>
-    </SafeAreaView>
+export default function VideoplayScreen() {
+  return (
+    <View style={styles.container}>
+        <Text>Play Video</Text>
+     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  Container: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-});
-
-export default VideoplayScreen;

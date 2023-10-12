@@ -1,24 +1,53 @@
-import React from 'react';
-import {SafeAreaView,ScrollView,StyleSheet,Text,View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList,Text,View,ScrollView,Button} from 'react-native';
+import {styles} from "../../../Style";
+import { useNavigation } from '@react-navigation/native';
+import { Card, Paragraph } from 'react-native-paper';
 
-function ChooseLang(){
+import {fetchLanguages} from '../../api/Service.js';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-return (
-    <SafeAreaView>
-      <ScrollView>
-      <View>
-      <Text>Welcome</Text> 
-      </View>
-      </ScrollView>
-    </SafeAreaView>
+export default function ChooseLang() {
+  const [language, setLanguage] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
+
+  useEffect(()=>{
+    getLanguages();
+  },[]);
+
+  const getLanguages = async ()=>{
+    const data = await fetchLanguages();
+    console.log('languages');
+    setLanguage(data);
+    setLoading(false);
+  }
+  const renderItem = ({ item: language }) => (
+    <Card>
+        <Text>{language.name}</Text>
+    </Card>
+);
+
+  return (
+      <SafeAreaView style={styles.container}>
+          <Text>Languages List</Text>
+            <FlatList
+            data={language}
+            renderItem={renderItem}
+            keyExtractor={language => language.id}
+            />       
+          <Button 
+        title="Search Museums"
+        onPress={() => navigation.navigate("DisplayMuseumList")}
+      />
+                <Button 
+        title="Search Collections"
+        onPress={() => navigation.navigate("ChooseCollection")}
+      />
+                   <Button 
+        title="Collection Details"
+        onPress={() => navigation.navigate("AudioplayScreen")}
+      />
+     </SafeAreaView> 
   );
 }
-
-const styles = StyleSheet.create({
-  Container: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-});
-
-export default ChooseLang;
