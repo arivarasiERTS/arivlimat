@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList,Text,View,ScrollView,Button} from 'react-native';
+import { FlatList,Text,TouchableOpacity,View,ScrollView,Button} from 'react-native';
 import {styles} from "../../../Style";
 import { useNavigation } from '@react-navigation/native';
 import { Card, Paragraph } from 'react-native-paper';
@@ -7,8 +7,9 @@ import { Card, Paragraph } from 'react-native-paper';
 import {fetchLanguages} from '../../api/Service.js';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function welcome() {
+export default function Welcome() {
   const [language, setLanguage] = useState([]);
+  const [selectedLId, setSelectedLId] = useState();
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
 
@@ -24,7 +25,9 @@ export default function welcome() {
   }
   const renderItem = ({ item: language }) => (
     <Card>
-        <Text>{language.name}</Text>
+        <TouchableOpacity onPress={() => {setSelectedLId(language.id),alert("language is set")}}>
+          <Text>{language.name}</Text>
+          </TouchableOpacity>
     </Card>
 );
 
@@ -36,7 +39,7 @@ export default function welcome() {
             data={language}
             renderItem={renderItem}
             keyExtractor={language => language.id}
-            />       
+            />   
           <Button 
         title="Search Museums"
         onPress={() => navigation.navigate("DisplayMuseumList")}
