@@ -25,8 +25,10 @@ export default function SelectedMuseumAudioScreen() {
   }
   const renderItem = ({ item: Collection }) => (
     <Card>
-        <TouchableOpacity  onPress={() => navigation.navigate("AudioplayScreen")}>
+        <TouchableOpacity  onPress={() => navigation.navigate("Useroption",selectedId)}>
          <Text>{Collection.name}</Text>
+         <Image style={{width: 300,height: 400, resizeMode: 'contain',}}
+           source={{uri: Collection.imageUrl}}/>
         </TouchableOpacity>
     </Card>
 );
@@ -40,12 +42,6 @@ export default function SelectedMuseumAudioScreen() {
             renderItem={renderItem}
             keyExtractor={Collection => Collection.id}
             />
-            <View style={styles.container}>
-           <Button 
-               title="QRscanner"
-               onPress={() => navigation.navigate("QRscanner")}
-             />
-            </View>
             </SafeAreaView> 
   );
   }

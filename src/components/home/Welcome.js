@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Welcome() {
   const [language, setLanguage] = useState([]);
-  const [selectedLId, setSelectedLId] = useState();
+  const [selectedLId, setSelectedLId] = useState("");
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
 
@@ -20,12 +20,13 @@ export default function Welcome() {
   const getLanguages = async ()=>{
     const data = await fetchLanguages();
     console.log('languages');
+    console.log(data);
     setLanguage(data);
     setLoading(false);
   }
   const renderItem = ({ item: language }) => (
     <Card>
-        <TouchableOpacity onPress={() => {setSelectedLId(language.id),alert("language is set")}}>
+        <TouchableOpacity onPress={() => {setSelectedLId(language.id),navigation.navigate("DisplayMuseumList",selectedLId)}}>
           <Text>{language.name}</Text>
           </TouchableOpacity>
     </Card>

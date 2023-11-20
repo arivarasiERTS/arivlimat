@@ -23,13 +23,16 @@ export default function SelectedMuseum() {
     const data = await fetchCollections(selectedId);
     console.log(selectedId);
     console.log('Collections');
+    console.log(data);
     setCollection(data);
     setLoading(false);
   }
   const renderItem = ({ item: Collection }) => (
     <Card>
-        <TouchableOpacity  onPress={() => navigation.navigate("Preference")}>
+        <TouchableOpacity  onPress={() => navigation.navigate("Preference",selectedId)}>
          <Text>{Collection.name}</Text>
+         <Image style={{width: 300,height: 400, resizeMode: 'contain',}}
+           source={{uri: Collection.imageUrl}}/>
         </TouchableOpacity>
     </Card>
 );

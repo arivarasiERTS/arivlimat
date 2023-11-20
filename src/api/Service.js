@@ -55,5 +55,3 @@ export const fetchSelectedCollection = ()=>{
 export const fetchCollectionDetails = ()=>{
     return apiCall(CollectionDetailsEndpoint);
 }
-
-

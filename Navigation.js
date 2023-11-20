@@ -2,6 +2,7 @@ import React from 'react';
 
 import Welcome from "./src/components/home/welcome";
 import Preference from "./src/components/preference/preference";
+import Useroption from "./src/components/preference/useroption";
 import DisplayMuseumList from "./src/components/museumlist/DisplayMuseumList";
 import SelectedMuseum from "./src/components/museumlist/SelectedMuseum";
 import SelectedMuseumAudioScreen from "./src/components/museumlistdetails/SelectedMuseumAudioScreen";
@@ -28,6 +29,11 @@ export default function Navigation() {
        <Stack.Screen 
           name="Preference"
           component={Preference}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen 
+          name="Useroption"
+          component={Useroption}
           options={{headerShown: false}}
         />
         <Stack.Screen 

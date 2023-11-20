@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList,Text,Image,View,ScrollView,Button} from 'react-native';
 import {styles} from "../../../Style";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useRoute } from '@react-navigation/native';
 import { Card, Paragraph } from 'react-native-paper';
 
 import {fetchCollectionDetails} from '../../api/Service.js';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AudioplayScreen() {
+  const {params: selectedId,selectedCId} = useRoute();
   const [CollectionD, setCollectionD] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
